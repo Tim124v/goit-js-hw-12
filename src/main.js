@@ -6,9 +6,10 @@ import { PixabayAPI } from './js/pixabay-api.js';
 import { createMarkup } from './js/render-functions.js';
 
 const refs = {
-    form: document.querySelector('#search-form'),
+    form: document.querySelector('.form'),
     gallery: document.querySelector('.gallery'),
-    loadMore: document.querySelector('.load-more')
+    loadMore: document.querySelector('.load-more'),
+    loader: document.querySelector('.loader')
 };
 
 const pixabayAPI = new PixabayAPI();
@@ -26,17 +27,13 @@ function showToast(message, type = 'error') {
 }
 
 function showLoader() {
-    const loader = document.createElement('div');
-    loader.classList.add('loader');
-    loader.textContent = 'Loading images, please wait...';
-    refs.loadMore.after(loader);
+    refs.loader.textContent = 'Loading images, please wait...';
+    refs.loader.classList.remove('is-hidden');
 }
 
 function removeLoader() {
-    const loader = document.querySelector('.loader');
-    if (loader) {
-        loader.remove();
-    }
+    refs.loader.textContent = '';
+    refs.loader.classList.add('is-hidden');
 }
 
 async function onSubmit(e) {

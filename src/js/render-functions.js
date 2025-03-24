@@ -2,7 +2,7 @@ export function createMarkup(images) {
   if (!Array.isArray(images)) return '';
   
   return images.map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `
-    <div class="photo-card">
+    <li class="photo-card">
       <a href="${largeImageURL}">
         <img src="${webformatURL}" alt="${tags}" loading="lazy" />
       </a>
@@ -24,16 +24,6 @@ export function createMarkup(images) {
           ${downloads}
         </p>
       </div>
-    </div>
+    </li>
   `).join('');
 }
-
-
-
-
-
-
-
-
-
-
